@@ -1,0 +1,74 @@
+{
+  "lastUpdated": "2026-04-12T19:00:00Z",
+  "location": "27614",
+  "weather": {
+    "temp": "42",
+    "condition": "Clear",
+    "humidity": "93",
+    "wind": "2"
+  },
+  "todaysTasks": [
+    {
+      "id": 1,
+      "title": "Set up Mission Control dashboard",
+      "completed": true,
+      "source": "conversation"
+    },
+    {
+      "id": 2,
+      "title": "Connect Apple Calendar (iCal)",
+      "completed": true,
+      "source": "conversation"
+    },
+    {
+      "id": 3,
+      "title": "Define top 3 goals with Nerissa",
+      "completed": true,
+      "source": "conversation"
+    },
+    {
+      "id": 4,
+      "title": "Upload Turo monthly files to track vehicle revenue",
+      "completed": false,
+      "source": "Turo Fleet P&L Tracking"
+    },
+    {
+      "id": 5,
+      "title": "Log recent maintenance for all Turo vehicles",
+      "completed": false,
+      "source": "Streamline Maintenance Tracking"
+    },
+    {
+      "id": 6,
+      "title": "Review underperforming vehicles and adjust pricing",
+      "completed": false,
+      "source": "Optimize Turo Revenue"
+    }
+  ],
+  "goals": [
+    {
+      "id": 1,
+      "title": "Turo Fleet P&L Tracking",
+      "description": "Upload Turo files monthly to track revenue per vehicle and maintenance costs for P&L",
+      "progress": 10,
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "title": "Optimize Turo Revenue",
+      "description": "Identify underperforming vehicles and adjust pricing strategy",
+      "progress": 0,
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "title": "Streamline Maintenance Tracking",
+      "description": "Log all maintenance per vehicle to calculate true ROI",
+      "progress": 0,
+      "status": "active"
+    }
+  ],
+  "calendarEvents": [],
+  "briefingHistory": [],
+  "context": "Building Mission Control system for Joules. Focus on efficiency and automation."
+}
