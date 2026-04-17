@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turo Fleet Financial Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .upload-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .upload-section h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .file-input {
+            display: none;
+        }
+        .upload-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .upload-btn:hover {
+            background: var(--primary-dark);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .data-table th, .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .summary-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .summary-card h4 {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        .summary-card .amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--success);
+        }
+        .summary-card.expense .amount {
+            color: var(--danger);
+        }
+        .vehicle-list {
+            list-style: none;
+            padding: 0;
+        }
+        .vehicle-list li {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .profit-positive { color: var(--success); }
+        .profit-negative { color: var(--danger); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Turo Fleet Financial Tracker</h1>
+            <p class="subtitle">Upload CSVs to track revenue, expenses, and P&L</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="tab-btn" onclick="showTab('upload')">Upload Data</button>
+            <button class="tab-btn" onclick="showTab('vehicles')">By Vehicle</button>
+            <button class="tab-btn" onclick="showTab('pnl')">P&L Statement</button>
+        </nav>
+
+        <main>
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h4>Total Revenue (MTD)</h4>
+                        <div class="amount" id="total-revenue">$0</div>
+                    </div>
+                    <div class="summary-card expense">
+                        <h4>Total Expenses (MTD)</h4>
+                        <div class="amount" id="total-expenses">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Net Profit (MTD)</h4>
+                        <div class="amount" id="net-profit">$0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Active Vehicles</h4>
+                        <div class="amount" id="vehicle-count">0</div>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <h3>📊 Recent Activity</h3>
+                    <div id="recent-activity">
+                        <p class="muted">Upload CSV files to see your financial data</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Tab -->
+            <div id="upload" class="tab-content">
+                <div class="upload-section">
+                    <h3>🚗 Turo Earnings</h3>
+                    <p>Upload your Turo earnings CSV (from Turo.com → Earnings → Export)</p>
+                    <input type="file" id="turo-file" class="file-input" accept=".csv">
+                    <button class="upload-btn" onclick="document.getElementById('turo-file').click()">Select Turo CSV</button>
+                    <span id="turo-status"></span>
+                </div>
+
+                <div class="upload-section">
+                    <h3>💳 Delta Amex Expenses</h3>
+                    <p>Upload your Delta Amex statement CSV (business expenses)</p>
+                    <input type="file" id="amex-file" class="file-input" accept=".csv">
+                    <button class="upload-btn" onclick="document.getElementById('amex-file').click()">Select Amex CSV</button>
+                    <span id="amex-status"></span>
+                </div>
+
+                <div class="upload-section">
+                    <h3>🏦 Wells Fargo Transactions</h3>
+                    <p>Upload your Wells Fargo account CSV (earnings & expenses)</p>
+                    <input type="file" id="wells-file" class="file-input" accept=".csv">
+                    <button class="upload-btn" onclick="document.getElementById('wells-file').click()">Select Wells Fargo CSV</button>
+                    <span id="wells-status"></span>
+                </div>
+
+                <div class="upload-section">
+                    <h3>🔧 Maintenance Records</h3>
+                    <p>Upload maintenance receipts or log (CSV format)</p>
+                    <input type="file" id="maintenance-file" class="file-input" accept=".csv">
+                    <button class="upload-btn" onclick="document.getElementById('maintenance-file').click()">Select Maintenance CSV</button>
+                    <span id="maintenance-status"></span>
+                </div>
+            </div>
+
+            <!-- Vehicles Tab -->
+            <div id="vehicles" class="tab-content">
+                <div class="upload-section">
+                    <h3>🚗 Vehicle Performance</h3>
+                    <ul class="vehicle-list" id="vehicle-list">
+                        <li>
+                            <span>Upload data to see vehicle breakdown</span>
+                            <span class="muted">-</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- P&L Tab -->
+            <div id="pnl" class="tab-content">
+                <div class="upload-section">
+                    <h3>📈 Profit & Loss Statement</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>% of Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pnl-body">
+                            <tr>
+                                <td colspan="3" class="muted">Upload data to generate P&L</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Turo Fleet Financial Tracker · Data stored locally in your browser</p>
+        </footer>
+    </div>
+
+    <script>
+        // Store data in memory
+        let turoData = [];
+        let amexData = [];
+        let wellsData = [];
+        let maintenanceData = [];
+
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Parse CSV
+        function parseCSV(text) {
+            const lines = text.split('\n').filter(line => line.trim());
+            const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
+                const row = {};
+                headers.forEach((h, idx) => row[h] = values[idx] || '');
+                data.push(row);
+            }
+            return data;
+        }
+
+        // Auto-categorize expenses
+        function categorizeExpense(description) {
+            const desc = description.toLowerCase();
+            if (/gas|fuel|shell|chevron|bp|exxon|mobil|costco gas|petroleum/i.test(desc)) return 'Fuel';
+            if (/repair|mechanic|oil|tire|auto ?zone|o.reilly|napa|maintenance|service/i.test(desc)) return 'Maintenance';
+            if (/insurance|geico|progressive|allstate|state farm/i.test(desc)) return 'Insurance';
+            if (/detail|wash|cleaning|car wash/i.test(desc)) return 'Cleaning';
+            if (/parking|toll|garage|meter/i.test(desc)) return 'Parking/Tolls';
+            if (/photo|camera/i.test(desc)) return 'Marketing';
+            if (/supply|air freshener|wipes|accessories/i.test(desc)) return 'Supplies';
+            if (/turo|platform|trip fee/i.test(desc)) return 'Turo Fees';
+            return 'Other';
+        }
+
+        // Handle Turo upload
+        document.getElementById('turo-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                turoData = parseCSV(e.target.result);
+                document.getElementById('turo-status').textContent = '✓ ' + turoData.length + ' transactions loaded';
+                updateDashboard();
+            };
+            reader.readAsText(file);
+        });
+
+        // Handle Amex upload
+        document.getElementById('amex-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                amexData = parseCSV(e.target.result);
+                amexData.forEach(row => {
+                    if (!row.Category) row.Category = categorizeExpense(row.Description || row.Merchant || '');
+                });
+                document.getElementById('amex-status').textContent = '✓ ' + amexData.length + ' transactions loaded';
+                updateDashboard();
+            };
+            reader.readAsText(file);
+        });
+
+        // Handle Wells Fargo upload
+        document.getElementById('wells-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                wellsData = parseCSV(e.target.result);
+                wellsData.forEach(row => {
+                    if (!row.Category) row.Category = categorizeExpense(row.Description || '');
+                });
+                document.getElementById('wells-status').textContent = '✓ ' + wellsData.length + ' transactions loaded';
+                updateDashboard();
+            };
+            reader.readAsText(file);
+        });
+
+        // Handle Maintenance upload
+        document.getElementById('maintenance-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                maintenanceData = parseCSV(e.target.result);
+                document.getElementById('maintenance-status').textContent = '✓ ' + maintenanceData.length + ' records loaded';
+                updateDashboard();
+            };
+            reader.readAsText(file);
+        });
+
+        // Update dashboard
+        function updateDashboard() {
+            // Calculate totals
+            let totalRevenue = 0;
+            let totalExpenses = 0;
+            let vehicles = new Set();
+
+            // Process Turo earnings
+            turoData.forEach(row => {
+                const amount = parseFloat(row.Earnings || row.Amount || row.Total || 0);
+                if (amount) totalRevenue += amount;
+                if (row.Vehicle || row['Car Name']) vehicles.add(row.Vehicle || row['Car Name']);
+            });
+
+            // Process Amex expenses
+            amexData.forEach(row => {
+                const amount = parseFloat(row.Amount || 0);
+                if (amount) totalExpenses += Math.abs(amount);
+            });
+
+            // Process Wells Fargo
+            wellsData.forEach(row => {
+                const amount = parseFloat(row.Amount || row.Debit || 0);
+                if (amount && amount > 0) totalExpenses += Math.abs(amount);
+            });
+
+            // Process Maintenance
+            maintenanceData.forEach(row => {
+                const amount = parseFloat(row.Amount || row.Cost || 0);
+                if (amount) totalExpenses += Math.abs(amount);
+            });
+
+            // Update summary cards
+            document.getElementById('total-revenue').textContent = '$' + totalRevenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('total-expenses').textContent = '$' + totalExpenses.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('net-profit').textContent = '$' + (totalRevenue - totalExpenses).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('vehicle-count').textContent = vehicles.size;
+
+            // Update recent activity
+            const activityHtml = [];
+            if (turoData.length) activityHtml.push('<p>✓ Turo: ' + turoData.length + ' transactions</p>');
+            if (amexData.length) activityHtml.push('<p>✓ Amex: ' + amexData.length + ' transactions</p>');
+            if (wellsData.length) activityHtml.push('<p>✓ Wells Fargo: ' + wellsData.length + ' transactions</p>');
+            if (maintenanceData.length) activityHtml.push('<p>✓ Maintenance: ' + maintenanceData.length + ' records</p>');
+            document.getElementById('recent-activity').innerHTML = activityHtml.join('') || '<p class="muted">Upload CSV files to see your financial data</p>';
+
+            // Update vehicle list
+            const vehicleList = document.getElementById('vehicle-list');
+            if (vehicles.size > 0) {
+                const vehicleHtml = [];
+                vehicles.forEach(vehicle => {
+                    let vehicleRevenue = 0;
+                    turoData.forEach(row => {
+                        if ((row.Vehicle || row['Car Name']) === vehicle) {
+                            vehicleRevenue += parseFloat(row.Earnings || row.Amount || row.Total || 0);
+                        }
+                    });
+                    vehicleHtml.push('<li><span>' + vehicle + '</span><span class="profit-positive">$' + vehicleRevenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</span></li>');
+                });
+                vehicleList.innerHTML = vehicleHtml.join('');
+            }
+
+            // Update P&L
+            const pnlBody = document.getElementById('pnl-body');
+            const categories = {};
+            
+            // Categorize Amex expenses
+            amexData.forEach(row => {
+                const cat = row.Category || 'Other';
+                const amt = Math.abs(parseFloat(row.Amount || 0));
+                categories[cat] = (categories[cat] || 0) + amt;
+            });
+            
+            // Categorize Wells Fargo expenses
+            wellsData.forEach(row => {
+                const cat = row.Category || 'Other';
+                const amt = Math.abs(parseFloat(row.Amount || row.Debit || 0));
+                if (amt > 0) categories[cat] = (categories[cat] || 0) + amt;
+            });
+            
+            // Add maintenance
+            maintenanceData.forEach(row => {
+                const amt = Math.abs(parseFloat(row.Amount || row.Cost || 0));
+                categories['Maintenance'] = (categories['Maintenance'] || 0) + amt;
+            });
+
+            // Build P&L table
+            let pnlHtml = '<tr><td><strong>Gross Revenue</strong></td><td><strong>$' + totalRevenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</strong></td><td>100%</td></tr>';
+            pnlHtml += '<tr><td colspan="3" style="border-bottom: 2px solid var(--border);"></td></tr>';
+            
+            Object.entries(categories).sort((a, b) => b[1] - a[1]).forEach(([cat, amt]) => {
+                const pct = totalRevenue > 0 ? ((amt / totalRevenue) * 100).toFixed(1) : 0;
+                pnlHtml += '<tr><td>' + cat + '</td><td>$' + amt.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</td><td>' + pct + '%</td></tr>';
+            });
+            
+            pnlHtml += '<tr><td colspan="3" style="border-bottom: 2px solid var(--border);"></td></tr>';
+            pnlHtml += '<tr><td><strong>Total Expenses</strong></td><td><strong>$' + totalExpenses.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</strong></td><td>' + (totalRevenue > 0 ? ((totalExpenses / totalRevenue) * 100).toFixed(1) : 0) + '%</td></tr>';
+            pnlHtml += '<tr><td><strong>Net Profit</strong></td><td><strong class="' + (totalRevenue - totalExpenses >= 0 ? 'profit-positive' : 'profit-negative') + '">$' + (totalRevenue - totalExpenses).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</strong></td><td>' + (totalRevenue > 0 ? (((totalRevenue - totalExpenses) / totalRevenue) * 100).toFixed(1) : 0) + '%</td></tr>';
+            
+            pnlBody.innerHTML = pnlHtml;
+        }
+    </script>
+</body>
+</html>
