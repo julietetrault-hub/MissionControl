@@ -1,7 +1,7 @@
 #!/bin/bash
 # Mission Control Auto-Update Script using Git
 
-GITHUB_TOKEN="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"
+GITHUB_TOKEN="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"
 REPO_OWNER="julietetrault-hub"
 REPO_NAME="MissionControl"
 DATA_FILE_PATH="/home/ubuntu/.openclaw/workspace/mission-control/data.json"

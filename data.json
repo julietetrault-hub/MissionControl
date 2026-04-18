@@ -70,5 +70,46 @@
   ],
   "calendarEvents": [],
   "briefingHistory": [],
-  "context": "Building Mission Control system for Joules. Focus on efficiency and automation."
+  "context": "Building Mission Control system for Joules. Focus on efficiency and automation.",
+  "financials": {
+    "totalRevenue": 21780.22,
+    "totalExpenses": 21780.22,
+    "categories": {
+      "Fleet Fuel & Charging": 482.15,
+      "Vehicle Maintenance": 850.4,
+      "Utilities & Subscriptions": 520.3,
+      "Turo Platform Fees": 5445,
+      "Insurance & Protection": 1200,
+      "Marketing & Professional": 150
+    },
+    "recentTransactions": [
+      {
+        "date": "2026-03-26",
+        "description": "Tesla Supercharger",
+        "amount": 3.33,
+        "category": "Fuel/Charging"
+      },
+      {
+        "date": "2026-03-25",
+        "description": "ExxonMobil Fuel",
+        "amount": 14.49,
+        "category": "Fuel/Charging"
+      },
+      {
+        "date": "2026-03-06",
+        "description": "City of Raleigh Utility",
+        "amount": 210.83,
+        "category": "Utilities"
+      },
+      {
+        "date": "2026-03-01",
+        "description": "Intuit QuickBooks",
+        "amount": 38,
+        "category": "Subscriptions"
+      }
+    ]
+  },
+  "totalRevenue": "$21,780.22",
+  "totalExpenses": "$8,647.88",
+  "netProfit": "$13,132.34"
 }
