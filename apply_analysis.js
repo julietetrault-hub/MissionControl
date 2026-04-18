@@ -4,29 +4,39 @@ const path = require('path');
 const indexFile = path.join(__dirname, 'index.html');
 let html = fs.readFileSync(indexFile, 'utf8');
 
-// Manual string search and replace to avoid regex issues
-const findRev = 'Total Revenue</h4>';
-const nextRev = html.indexOf('<div class="amount"', html.indexOf(findRev));
-const endRev = html.indexOf('</div>', nextRev);
-html = html.substring(0, nextRev) + '<div class="amount" style="color: var(--success);">$106,711.98' + html.substring(endRev);
+// Manual search and replace for amounts
+const updateAmount = (label, newValue) => {
+    const findLabel = label + '</h4>';
+    const startIdx = html.indexOf('<div class="amount"', html.indexOf(findLabel));
+    const contentStart = html.indexOf('>', startIdx) + 1;
+    const contentEnd = html.indexOf('</div>', contentStart);
+    html = html.substring(0, contentStart) + newValue + html.substring(contentEnd);
+};
 
-const findExp = 'Total Expenses</h4>';
-const nextExp = html.indexOf('<div class="amount"', html.indexOf(findExp));
-const endExp = html.indexOf('</div>', nextExp);
-html = html.substring(0, nextExp) + '<div class="amount" style="color: var(--danger);">$91,378.82' + html.substring(endExp);
+updateAmount('Total Revenue', '$135,842.12');
+updateAmount('Total Expenses', '$115,463.95');
+updateAmount('Net Profit', '$20,378.17');
 
-const findNet = 'Net Profit</h4>';
-const nextNet = html.indexOf('<div class="amount"', html.indexOf(findNet));
-const endNet = html.indexOf('</div>', nextNet);
-html = html.substring(0, nextNet) + '<div class="amount" style="color: var(--primary);">$15,333.16' + html.substring(endNet);
+// Activity List - Clean and Simple
+const activityHtml = `
+<div class="event-item"><span>NCJUA Insurance Payment</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$1,445.98</span></div>
+<div class="event-item"><span>Safelite Auto Glass (Credit)</span> <span class="amount" style="font-size: 14px; color: var(--success);">$1,319.12</span></div>
+<div class="event-item"><span>Delta Air Lines - Turnbull</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$408.95</span></div>
+<div class="event-item"><span>H&R Block Tax Prep</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$397.00</span></div>
+<div class="event-item"><span>Duke Energy Payment</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$441.21</span></div>
+<div class="event-item"><span>City of Raleigh Utility</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$227.05</span></div>
+`;
+
+const sumStart = html.indexOf('<div id="pnl-summary">') + 22;
+const sumEnd = html.indexOf('</div>', sumStart);
+html = html.substring(0, sumStart) + activityHtml + html.substring(sumEnd);
 
 // Timestamp
 const now = new Date();
 const timestamp = now.toUTCString().replace('GMT', 'UTC').toUpperCase().split(' ').slice(1, 5).join(' ');
-const findTime = 'Last Updated:</p>';
-const nextTime = html.indexOf('bold; margin: 0;">', html.indexOf(findTime)) + 18;
-const endTime = html.indexOf('</p>', nextTime);
-html = html.substring(0, nextTime) + timestamp + html.substring(endTime);
+const timeStart = html.indexOf('bold; margin: 0;">') + 18;
+const timeEnd = html.indexOf('</p>', timeStart);
+html = html.substring(0, timeStart) + timestamp + html.substring(timeEnd);
 
 fs.writeFileSync(indexFile, html);
 console.log('✅ Dashboard updated.');
