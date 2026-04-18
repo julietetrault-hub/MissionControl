@@ -68,7 +68,28 @@
       "status": "active"
     }
   ],
-  "calendarEvents": [],
+  "calendarEvents": [
+    {
+      "title": "Citibank 5k payment tomorrow",
+      "date": "Syncing..."
+    },
+    {
+      "title": "Appointment: Service at BMW of Raleigh",
+      "date": "Syncing..."
+    },
+    {
+      "title": "Dropoff X6",
+      "date": "Syncing..."
+    },
+    {
+      "title": "Alicia’s 50th Ibiza",
+      "date": "Syncing..."
+    },
+    {
+      "title": "The Armstrong Center for Hope",
+      "date": "Syncing..."
+    }
+  ],
   "briefingHistory": [],
   "context": "Building Mission Control system for Joules. Focus on efficiency and automation.",
   "financials": {
