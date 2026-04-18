@@ -186,19 +186,6 @@
             margin-bottom: 24px;
         }
 
-        .upload-btn {
-            background: var(--primary);
-            color: white;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-            transition: background 0.2s;
-        }
-
-        .upload-btn:hover { background: var(--primary-dark); }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -318,12 +305,6 @@
             if (btn) showTab(btn, tabId);
         }
 
-        document.getElementById('csv-upload').addEventListener('change', function(e) {
-            const files = e.target.files;
-            if (files.length > 0) {
-                document.getElementById('upload-status').innerHTML = '✅ ' + files.length + ' files identified. Ready for processing.';
-            }
-        });
     </script>
 </body>
 </html>
