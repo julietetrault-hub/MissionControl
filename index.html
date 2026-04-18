@@ -228,6 +228,11 @@
                     <span class="nav-icon">📊</span> Financials
                 </button>
             </li>
+            <li class="nav-item">
+                <button class="nav-btn" onclick="showTab(this, 'calendar')">
+                    <span class="nav-icon">📅</span> Calendar
+                </button>
+            </li>
         </ul>
         <div style="padding: 20px; border-top: 1px solid var(--border);">
             <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 12px;">To update data, send CSV files directly to Nerissa in chat.</p>
@@ -255,6 +260,12 @@
                     <span class="card-icon">📈</span>
                     <h3 class="card-title">Financials</h3>
                     <p class="card-desc">Detailed Profit & Loss statements, revenue tracking, and expense analysis.</p>
+                </a>
+
+                <a href="#" class="card" onclick="triggerNav('calendar')">
+                    <span class="card-icon">📅</span>
+                    <h3 class="card-title">Calendar</h3>
+                    <p class="card-desc">Your synced Apple iCal events and daily agenda.</p>
                 </a>
             </div>
         </div>
@@ -286,6 +297,20 @@
         </div>
 
         <!-- Tab: Upload (Removed) -->
+
+        <!-- Tab: Calendar -->
+        <div id="calendar" class="tab-content">
+            <div class="page-header">
+                <h2 class="page-title">Calendar</h2>
+                <p class="page-subtitle">Your synced Apple iCal schedule.</p>
+            </div>
+            <div class="section">
+                <h3>Upcoming Events</h3>
+                <div id="calendar-events" style="color: var(--text-muted);">
+                    Syncing events from iCloud...
+                </div>
+            </div>
+        </div>
 
     </main>
 
