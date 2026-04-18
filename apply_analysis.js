@@ -4,24 +4,29 @@ const path = require('path');
 const indexFile = path.join(__dirname, 'index.html');
 let html = fs.readFileSync(indexFile, 'utf8');
 
-// Use non-regex replacement for safety
-const revenueTag = '<div class="amount" style="color: var(--success);">$21,780.22</div>';
-const newRevenue = '<div class="amount" style="color: var(--success);">$24,600.28</div>';
-html = html.replace(revenueTag, newRevenue);
+// Manual string search and replace to avoid regex issues
+const findRev = 'Total Revenue</h4>';
+const nextRev = html.indexOf('<div class="amount"', html.indexOf(findRev));
+const endRev = html.indexOf('</div>', nextRev);
+html = html.substring(0, nextRev) + '<div class="amount" style="color: var(--success);">$106,711.98' + html.substring(endRev);
 
-const expenseTag = '<div class="amount" style="color: var(--danger);">$8,647.88</div>';
-const newExpense = '<div class="amount" style="color: var(--danger);">$11,987.46</div>';
-html = html.replace(expenseTag, newExpense);
+const findExp = 'Total Expenses</h4>';
+const nextExp = html.indexOf('<div class="amount"', html.indexOf(findExp));
+const endExp = html.indexOf('</div>', nextExp);
+html = html.substring(0, nextExp) + '<div class="amount" style="color: var(--danger);">$91,378.82' + html.substring(endExp);
 
-const netTag = '<div class="amount" style="color: var(--primary);">$13,132.34</div>';
-const newNet = '<div class="amount" style="color: var(--primary);">$12,612.82</div>';
-html = html.replace(netTag, newNet);
+const findNet = 'Net Profit</h4>';
+const nextNet = html.indexOf('<div class="amount"', html.indexOf(findNet));
+const endNet = html.indexOf('</div>', nextNet);
+html = html.substring(0, nextNet) + '<div class="amount" style="color: var(--primary);">$15,333.16' + html.substring(endNet);
 
-// Timestamp update
-const timeTag = 'APR 18, 2026 - 01:17 UTC';
+// Timestamp
 const now = new Date();
 const timestamp = now.toUTCString().replace('GMT', 'UTC').toUpperCase().split(' ').slice(1, 5).join(' ');
-html = html.replace(timeTag, timestamp);
+const findTime = 'Last Updated:</p>';
+const nextTime = html.indexOf('bold; margin: 0;">', html.indexOf(findTime)) + 18;
+const endTime = html.indexOf('</p>', nextTime);
+html = html.substring(0, nextTime) + timestamp + html.substring(endTime);
 
 fs.writeFileSync(indexFile, html);
 console.log('✅ Dashboard updated.');
