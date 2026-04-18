@@ -241,14 +241,9 @@
                     <span class="nav-icon">💰</span> P&L Statement
                 </button>
             </li>
-            <li class="nav-item">
-                <button class="nav-btn" onclick="showTab(this, 'upload')">
-                    <span class="nav-icon">📁</span> Upload Data
-                </button>
-            </li>
         </ul>
         <div style="padding: 20px; border-top: 1px solid var(--border);">
-            <button class="upload-btn" style="width: 100%; padding: 10px;" onclick="showTab(document.querySelector('.nav-btn[onclick*="upload"]'), 'upload')">Quick Upload</button>
+            <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 12px;">To update data, send CSV files directly to Nerissa in chat.</p>
         </div>
     </nav>
 
@@ -273,12 +268,6 @@
                     <span class="card-icon">📈</span>
                     <h3 class="card-title">Financials</h3>
                     <p class="card-desc">Detailed Profit & Loss statements, revenue tracking, and expense analysis.</p>
-                </a>
-
-                <a href="#" class="card" onclick="triggerNav('upload')">
-                    <span class="card-icon">☁️</span>
-                    <h3 class="card-title">Data Ingestion</h3>
-                    <p class="card-desc">Upload new CSV statements from Turo or AMEX to update your dashboard.</p>
                 </a>
             </div>
         </div>
@@ -309,20 +298,7 @@
             </div>
         </div>
 
-        <!-- Tab: Upload -->
-        <div id="upload" class="tab-content">
-            <div class="page-header">
-                <h2 class="page-title">Upload Data</h2>
-                <p class="page-subtitle">Sync your latest statements to GitHub Mission Control.</p>
-            </div>
-            <div class="section">
-                <h3>📁 Select Sources</h3>
-                <p>Drag and drop or select your Turo Earnings or Amex Statement CSV files.</p>
-                <input type="file" id="csv-upload" style="display:none" accept=".csv" multiple>
-                <button class="upload-btn" onclick="document.getElementById('csv-upload').click()">Browse Files</button>
-                <div id="upload-status" style="margin-top: 20px; color: var(--success);"></div>
-            </div>
-        </div>
+        <!-- Tab: Upload (Removed) -->
 
     </main>
 
