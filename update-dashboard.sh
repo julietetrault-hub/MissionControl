@@ -21,9 +21,9 @@ fi
 
 # Stage and commit everything
 git add .
-git commit -m "Full Mission Control sync - $(date)" || echo "No changes to commit"
+git commit -m "Full Mission Control sync - $(date -u)" || echo "No changes to commit"
 
-# Push
-git push -u origin main 2>&1
+# Force push to main to ensure GitHub Pages updates immediately
+git push -f origin master:main
 
 echo "✅ Dashboard updated!"
