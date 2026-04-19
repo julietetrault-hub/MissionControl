@@ -18,9 +18,7 @@
             --danger: #ef4444;
             --sidebar-width: 260px;
         }
-        
         * { box-sizing: border-box; }
-        
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
@@ -29,8 +27,6 @@
             display: flex;
             min-height: 100vh;
         }
-
-        /* Sidebar Navigation */
         .sidebar {
             width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
@@ -41,457 +37,96 @@
             height: 100vh;
             z-index: 100;
         }
-
-        .sidebar-header {
-            padding: 24px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .sidebar-header h1 {
-            font-size: 1.25rem;
-            margin: 0;
-            color: var(--primary);
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-list {
-            list-style: none;
-            padding: 20px 12px;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            margin-bottom: 4px;
-        }
-
+        .sidebar-header { padding: 24px; border-bottom: 1px solid var(--border); }
+        .sidebar-header h1 { font-size: 1.25rem; margin: 0; color: var(--primary); font-weight: 800; }
+        .nav-list { list-style: none; padding: 20px 12px; margin: 0; flex-grow: 1; }
         .nav-btn {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 14px;
-            font-weight: 500;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s;
+            width: 100%; display: flex; align-items: center; padding: 12px 16px;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 14px; font-weight: 500; cursor: pointer; border-radius: 8px;
         }
-
-        .nav-btn:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-        }
-
-        .nav-btn.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .nav-icon { margin-right: 12px; font-size: 18px; }
-
-        /* Main Content Area */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex-grow: 1;
-            padding: 40px;
-            max-width: 1200px;
-        }
-
-        .page-header {
-            margin-bottom: 40px;
-        }
-
-        .page-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0 0 8px 0;
-        }
-
-        .page-subtitle {
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Overview Cards - Clickable Grid */
-        .overview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--primary);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-icon {
-            font-size: 32px;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0 0 8px 0;
-        }
-
-        .card-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* Tab Content Control */
+        .nav-btn.active { background-color: var(--primary); color: white; }
+        .main-content { margin-left: var(--sidebar-width); flex-grow: 1; padding: 40px; max-width: 1200px; }
+        .section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+        .summary-cards { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+        .summary-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+        .amount { font-size: 28px; font-weight: bold; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
-        /* Generic Sections */
-        .section {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-
-        /* Financial Summary Cards */
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .summary-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-        .summary-card h4 {
-            color: var(--text-muted);
-            margin: 0 0 10px 0;
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-        .amount {
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        /* Event Item */
-        .event-item {
-            padding: 16px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .event-date {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Responsive Design */
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .data-table th, .data-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-            .main-content {
-                margin-left: 0;
-                padding: 24px;
-            }
-            .nav-list { display: flex; overflow-x: auto; padding: 12px; }
-            .nav-item { margin-bottom: 0; margin-right: 8px; flex-shrink: 0; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .main-content { margin-left: 0; padding: 24px; }
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
     <nav class="sidebar">
-        <div class="sidebar-header">
-            <h1>JOULÉS MISSION CONTROL</h1>
-        </div>
+        <div class="sidebar-header"><h1>JOULÉS MISSION CONTROL</h1></div>
         <ul class="nav-list">
-            <li class="nav-item">
-                <button class="nav-btn active" onclick="showTab(this, 'overview')">
-                    <span class="nav-icon">📊</span> Overview
-                </button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-btn" onclick="showTab(this, 'modern-luxury')">
-                    <span class="nav-icon">🏎️</span> J&J Modern Luxury
-                </button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-btn" onclick="showTab(this, 'pnl')">
-                    <span class="nav-icon">📊</span> Financials
-                </button>
-            </li>
-            <li class="nav-item">
-                <button class="nav-btn" onclick="showTab(this, 'calendar')">
-                    <span class="nav-icon">📅</span> Calendar
-                </button>
-            </li>
+            <li><button class="nav-btn active" onclick="showTab(this, 'overview')">📊 Overview</button></li>
+            <li><button class="nav-btn" onclick="showTab(this, 'modern-luxury')">🏎️ J&J Modern Luxury</button></li>
+            <li><button class="nav-btn" onclick="showTab(this, 'pnl')">📊 Financials</button></li>
+            <li><button class="nav-btn" onclick="showTab(this, 'calendar')">📅 Calendar</button></li>
         </ul>
-        <div style="padding: 20px; border-top: 1px solid var(--border);">
-            <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 4px;">Last Updated:</p>
-            <p style="font-size: 12px; color: var(--primary); text-align: center; font-weight: bold; margin: 0;">18 APR 2026 02:24:42</p>
-        </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
-        
-        <!-- Tab: Overview -->
         <div id="overview" class="tab-content active">
-            <div class="page-header">
-                <h2 class="page-title">Command Overview</h2>
-                <p class="page-subtitle">Centralized access to all fleet operations and financial data.</p>
-            </div>
-            
-            <div class="overview-grid">
-                <a href="#" class="card" onclick="triggerNav('modern-luxury')">
-                    <img src="assets/logo.png" alt="Logo" style="height: 60px; margin-bottom: 16px;">
-                    <h3 class="card-title">J&J Modern Luxury</h3>
-                    <p class="card-desc">High-end fleet performance, utilization rates, and luxury vehicle metrics.</p>
-                </a>
-                
-                <a href="#" class="card" onclick="triggerNav('pnl')">
-                    <span class="card-icon">📈</span>
-                    <h3 class="card-title">Financials</h3>
-                    <p class="card-desc">Detailed Profit & Loss statements, revenue tracking, and expense analysis.</p>
-                </a>
-
-                <a href="#" class="card" onclick="triggerNav('calendar')">
-                    <span class="card-icon">📅</span>
-                    <h3 class="card-title">Calendar</h3>
-                    <p class="card-desc">Your synced Apple iCal events and daily agenda.</p>
-                </a>
+            <div class="section">
+                <h2>Command Overview</h2>
+                <p>Gross Revenue: $21,780.22</p>
+                <p>Total Expenses: $8,647.88</p>
+                <p>Net Profit: $13,132.34</p>
             </div>
         </div>
 
-        <!-- Tab: Modern Luxury -->
         <div id="modern-luxury" class="tab-content">
-            <div class="page-header" style="text-align: center;">
-                <img src="assets/logo.png" alt="J&J Modern Luxury" style="max-width: 300px; margin-bottom: 20px;">
-                <h2 class="page-title">J&J Modern Luxury</h2>
-                <p class="page-subtitle">Premium fleet management and analytics.</p>
+            <div class="section">
+                <h2>J&J Modern Luxury</h2>
+                <h3>Top 5 Performance Metrics</h3>
+                <ul>
+                    <li>1. Luxury Growth: +173% YoY</li>
+                    <li>2. High-Value Center: Maintenance</li>
+                    <li>3. Debt Efficiency: 84% Utilization</li>
+                    <li>4. Peak Month: Oct-Nov 2025</li>
+                    <li>5. Avg Exp Transaction: $318.00</li>
+                </ul>
             </div>
             <div class="section">
-                <h3>Luxury Performance Metrics</h3>
-<div class="section" id="jj-metrics">
-    <h3>J&J Modern Luxury: Top 5 Performance Metrics</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 16px;">
-            <strong>1. Luxury Segment Growth: +173% YoY</strong><br>
-            <small style="color: var(--text-muted);">Revenue grew from $32k in 2024 to over $88k in 2025 as luxury fleet capacity expanded.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>2. High-Value Cost Center: Maintenance & Repairs</strong><br>
-            <small style="color: var(--text-muted);">Major expenses identified for Tesla and BMW service (e.g., $1,624 Wakefield service) are key luxury-tier overhead.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>3. Debt-to-Revenue Efficiency: 84% Utilization</strong><br>
-            <small style="color: var(--text-muted);">Statement "Mobile Payments" represent the majority of cash-out, indicating aggressive fleet financing for luxury assets.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>4. Peak Revenue Month: Oct - Nov 2025 ($15,634)</strong><br>
-            <small style="color: var(--text-muted);">Historical peak month indicates high seasonality demand for the modern luxury fleet in late fall.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>5. Average Transaction Value (Expenses): $318.00</strong><br>
-            <small style="color: var(--text-muted);">Excluding debt payments, average business maintenance/supply spend aligns with luxury-tier operational costs.</small>
-        </li>
-    </ul>
-</div>
-
-                <p style="color: var(--text-muted)">Tracking utilization and daily rates for the luxury segment...</p>
+                <h3>2025 Fleet Performance</h3>
+                <table class="data-table">
+                    <thead><tr><th>Vehicle</th><th>Revenue</th><th>Trips</th></tr></thead>
+                    <tbody>
+                        <tr><td>Julie's BMW (NC #LDV5000)</td><td>$20,747.72</td><td>40</td></tr><tr><td>Double Stuff (Tesla Model 3)</td><td>$13,350.34</td><td>18</td></tr><tr><td>J&J Modern Luxury's Porsche (NC #LJX5696)</td><td>$10,410.92</td><td>23</td></tr><tr><td>J&J Modern Luxury's BMW (NC #LLV4227)</td><td>$8,906.71</td><td>9</td></tr><tr><td>Julie's Tesla (NC #LBZ1843)</td><td>$7,338.52</td><td>19</td></tr><tr><td>J&J Modern Luxury's Mercedes-Benz (NC #LJV9937)</td><td>$7,245.12</td><td>15</td></tr><tr><td>Julie's Porsche Macan S (NC #LCT7781)</td><td>$223.2</td><td>1</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- Tab: Financials (P&L) -->
         <div id="pnl" class="tab-content">
-            <div class="page-header">
-                <h2 class="page-title">Financials</h2>
-                <p class="page-subtitle">Profit & Loss (P&L) statement and comprehensive breakdown.</p>
-            </div>
-            
             <div class="summary-cards">
-                <div class="summary-card">
-                    <h4>Total Revenue</h4>
-                    <div class="amount" style="color: var(--success);">$135,842.12</div>
-<div class="section" id="overall-metrics">
-    <h3>Overall Business: Top 5 Financial Metrics</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 16px;">
-            <strong>1. Net Profit (All-Time): $20,378.17</strong><br>
-            <small style="color: var(--text-muted);">Total take-home after all categorized Amex business expenses and debt service.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>2. Cumulative Operating Margin: 15.1%</strong><br>
-            <small style="color: var(--text-muted);">For every dollar earned, 15 cents is retained as pure profit after aggressive growth reinvestment.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>4. Cash Flow Health: Consistently Positive</strong><br>
-            <small style="color: var(--text-muted);">Despite heavy payments ($11k+ in Nov '25), revenue consistently outpaced outflow across 29 statement cycles.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>5. Strategic Reinvestment Rate: $115k (All-Time)</strong><br>
-            <small style="color: var(--text-muted);">Total capital deployed back into the business via expenses and financing payments since early 2024.</small>
-        </li>
-    </ul>
-</div>
-
-<div class="section">
-    <h3>Yearly Breakdown</h3>
-    <table class="data-table" style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="border-bottom: 1px solid var(--border);">
-                <th style="padding: 12px; text-align: left;">Year</th>
-                <th style="padding: 12px; text-align: left;">Revenue</th>
-                <th style="padding: 12px; text-align: left;">Expenses</th>
-                <th style="padding: 12px; text-align: left;">Net Profit</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-                <tr style="border-bottom: 1px solid var(--border);">
-                    <td style="padding: 12px;">2024</td>
-                    <td style="padding: 12px;">$32,450</td>
-                    <td style="padding: 12px;">$26,220.5</td>
-                    <td style="padding: 12px; color: var(--success); font-weight: bold;">$6,229.5</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--border);">
-                    <td style="padding: 12px;">2025</td>
-                    <td style="padding: 12px;">$88,612.12</td>
-                    <td style="padding: 12px;">$80,601.75</td>
-                    <td style="padding: 12px; color: var(--success); font-weight: bold;">$8,010.37</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--border);">
-                    <td style="padding: 12px;">2026</td>
-                    <td style="padding: 12px;">$14,780</td>
-                    <td style="padding: 12px;">$21,779.32</td>
-                    <td style="padding: 12px; color: var(--danger); font-weight: bold;">$-6,999.32</td>
-                </tr>
-        </tbody>
-    </table>
-</div>
-
-
-
-                </div>
-                <div class="summary-card">
-                    <h4>Total Expenses</h4>
-                    <div class="amount" style="color: var(--danger);">$115,463.95</div>
-<div class="section" id="expense-metrics">
-    <h3>Top 5 Expense Optimization Metrics</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 16px;">
-            <strong>1. Debt Service Concentration: ~65% of Outflow</strong><br>
-            <small style="color: var(--text-muted);">The majority of "expenses" are actually vehicle financing payments. Consolidating or refinancing these as the fleet matures could significantly boost monthly liquidity.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>2. High-Frequency Maintenance Leakage</strong><br>
-            <small style="color: var(--text-muted);">Tesla Supercharging and small-ticket items (Sheetz, Walgreens) add up. Standardizing charging locations or using business-only fuel cards could capture more tax-deductible data.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>3. Utility Volatility (Duke Energy)</strong><br>
-            <small style="color: var(--text-muted);">Energy costs fluctuate significantly ($243 vs $441). Implementing smart-charging schedules during off-peak hours could shave 10-15% off fleet charging overhead.</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>4. Uncategorized "Cash Out" Efficiency</strong><br>
-            <small style="color: var(--text-muted);">A significant portion of expenses are bulk mobile payments. Breaking these down into specific vehicle IDs in the next sync will help identify which cars are "expense-heavy" versus "low-maintenance."</small>
-        </li>
-        <li style="margin-bottom: 16px;">
-            <strong>5. Reinvestment vs. Burn Ratio: 1.18x</strong><br>
-            <small style="color: var(--text-muted);">For every $1 spent on maintenance/fixed costs, you are generating $1.18 in revenue. To grow, we need to push this ratio toward 1.5x by optimizing fleet uptime.</small>
-        </li>
-    </ul>
-</div>
-
-                </div>
-                <div class="summary-card">
-                    <h4>Net Profit</h4>
-                    <div class="amount" style="color: var(--primary);">$20,378.17</div>
-                </div>
+                <div class="summary-card"><h4>Total Revenue</h4><div class="amount" style="color: var(--success);">$21,780.22</div></div>
+                <div class="summary-card"><h4>Total Expenses</h4><div class="amount" style="color: var(--danger);">$8,647.88</div></div>
+                <div class="summary-card"><h4>Net Profit</h4><div class="amount" style="color: var(--primary);">$13,132.34</div></div>
             </div>
-
             <div class="section">
-                <h3>Recent Activity</h3>
-                <div id="pnl-summary">
-<div class="event-item"><span>NCJUA Insurance Payment</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$1,445.98</span></div>
-<div class="event-item"><span>Safelite Auto Glass (Credit)</span> <span class="amount" style="font-size: 14px; color: var(--success);">$1,319.12</span></div>
-<div class="event-item"><span>Delta Air Lines - Turnbull</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$408.95</span></div>
-<div class="event-item"><span>H&R Block Tax Prep</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$397.00</span></div>
-<div class="event-item"><span>Duke Energy Payment</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$441.21</span></div>
-<div class="event-item"><span>City of Raleigh Utility</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$227.05</span></div>
-</div>
-                    <div class="event-item"><span>ExxonMobil Fuel</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$14.49</span></div>
-                    <div class="event-item"><span>City of Raleigh Utility</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$210.83</span></div>
-                    <div class="event-item"><span>Intuit QuickBooks</span> <span class="amount" style="font-size: 14px; color: var(--danger);">$38.00</span></div>
-                </div>
+                <h3>Top 5 Financial Metrics</h3>
+                <ul>
+                    <li>1. Operating Margin: 15.1%</li>
+                    <li>2. Debt Service: ~65% of Outflow</li>
+                    <li>3. Energy Volatility: Duke Energy fluctuation</li>
+                    <li>4. Growth Trend: +173%</li>
+                    <li>5. Cash Flow: Positive</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Tab: Calendar -->
         <div id="calendar" class="tab-content">
-            <div class="page-header">
-                <h2 class="page-title">Calendar</h2>
-                <p class="page-subtitle">Your synced Apple iCal schedule.</p>
-            </div>
-            <div class="section">
-                <h3>Upcoming Agenda</h3>
-                <div id="calendar-list">
-                    <div class="event-item">
-                        <span><strong>Citibank 5k payment tomorrow</strong></span>
-                        <span class="event-date">Upcoming</span>
-                    </div>
-                    <div class="event-item">
-                        <span><strong>Appointment: Service at BMW of Raleigh</strong></span>
-                        <span class="event-date">Upcoming</span>
-                    </div>
-                    <div class="event-item">
-                        <span><strong>Dropoff X6</strong></span>
-                        <span class="event-date">Upcoming</span>
-                    </div>
-                    <div class="event-item">
-                        <span><strong>Alicia’s 50th Ibiza</strong></span>
-                        <span class="event-date">Event</span>
-                    </div>
-                    <div class="event-item">
-                        <span><strong>The Armstrong Center for Hope</strong></span>
-                        <span class="event-date">Appointment</span>
-                    </div>
-                </div>
-            </div>
+            <div class="section"><h2>Calendar</h2><p>Syncing iCal events...</p></div>
         </div>
-
     </main>
 
     <script>
@@ -500,11 +135,6 @@
             document.getElementById(tabId).classList.add('active');
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-        }
-
-        function triggerNav(tabId) {
-            const btn = document.querySelector(`.nav-btn[onclick*="${tabId}"]`);
-            if (btn) showTab(btn, tabId);
         }
     </script>
 </body>
