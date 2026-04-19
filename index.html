@@ -44,8 +44,19 @@
             width: 100%; display: flex; align-items: center; padding: 12px 16px;
             background: none; border: none; color: var(--text-muted);
             font-size: 14px; font-weight: 500; cursor: pointer; border-radius: 8px;
+            text-align: left;
         }
+        .nav-btn:hover { background-color: rgba(255, 255, 255, 0.05); }
         .nav-btn.active { background-color: var(--primary); color: white; }
+        .sub-nav { padding-left: 32px; list-style: none; display: none; margin: 4px 0; }
+        .sub-nav.active { display: block; }
+        .sub-btn {
+            width: 100%; padding: 8px 16px; background: none; border: none;
+            color: var(--text-muted); font-size: 13px; cursor: pointer; text-align: left;
+            border-radius: 6px;
+        }
+        .sub-btn.active { color: var(--primary); font-weight: bold; }
+        
         .main-content { margin-left: var(--sidebar-width); flex-grow: 1; padding: 40px; max-width: 1200px; }
         .section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
         .summary-cards { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
@@ -67,7 +78,12 @@
         <div class="sidebar-header"><h1>JOULÉS MISSION CONTROL</h1></div>
         <ul class="nav-list">
             <li><button class="nav-btn active" onclick="showTab(this, 'overview')">📊 Overview</button></li>
-            <li><button class="nav-btn" onclick="showTab(this, 'modern-luxury')">🏎️ J&J Modern Luxury</button></li>
+            <li>
+                <button class="nav-btn" onclick="toggleSubNav('modern-luxury-sub', this, 'modern-luxury')">🏎️ J&J Modern Luxury</button>
+                <ul id="modern-luxury-sub" class="sub-nav">
+                    <li><button class="sub-btn" onclick="showTab(this, 'jj-fleet')">🚗 Fleet Performance</button></li>
+                </ul>
+            </li>
             <li><button class="nav-btn" onclick="showTab(this, 'pnl')">📊 Financials</button></li>
             <li><button class="nav-btn" onclick="showTab(this, 'calendar')">📅 Calendar</button></li>
         </ul>
@@ -95,8 +111,11 @@
                     <li>5. Avg Exp Transaction: $318.00</li>
                 </ul>
             </div>
+        </div>
+
+        <div id="jj-fleet" class="tab-content">
             <div class="section">
-                <h3>2025 Fleet Performance</h3>
+                <h2>Fleet Performance (2025)</h2>
                 <table class="data-table">
                     <thead><tr><th>Vehicle</th><th>Revenue</th><th>Trips</th></tr></thead>
                     <tbody>
@@ -112,16 +131,6 @@
                 <div class="summary-card"><h4>Total Expenses</h4><div class="amount" style="color: var(--danger);">$8,647.88</div></div>
                 <div class="summary-card"><h4>Net Profit</h4><div class="amount" style="color: var(--primary);">$13,132.34</div></div>
             </div>
-            <div class="section">
-                <h3>Top 5 Financial Metrics</h3>
-                <ul>
-                    <li>1. Operating Margin: 15.1%</li>
-                    <li>2. Debt Service: ~65% of Outflow</li>
-                    <li>3. Energy Volatility: Duke Energy fluctuation</li>
-                    <li>4. Growth Trend: +173%</li>
-                    <li>5. Cash Flow: Positive</li>
-                </ul>
-            </div>
         </div>
 
         <div id="calendar" class="tab-content">
@@ -133,8 +142,29 @@
         function showTab(btn, tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            // Clean up all buttons
+            document.querySelectorAll('.nav-btn, .sub-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            
+            // Handle sub-nav visibility
+            if (!btn.closest('.sub-nav')) {
+                document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+            }
+        }
+
+        function toggleSubNav(subId, btn, mainTabId) {
+            const sub = document.getElementById(subId);
+            const isActive = sub.classList.contains('active');
+            
+            // Close others
+            document.querySelectorAll('.sub-nav').forEach(s => s.classList.remove('active'));
+            
+            if (!isActive) {
+                sub.classList.add('active');
+            }
+            
+            showTab(btn, mainTabId);
         }
     </script>
 </body>
