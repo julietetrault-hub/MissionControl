@@ -82,7 +82,7 @@
       "date": "Syncing..."
     },
     {
-      "title": "Alicia’s 50th Ibiza",
+      "title": "Alicia\u2019s 50th Ibiza",
       "date": "Syncing..."
     },
     {
@@ -132,5 +132,42 @@
   },
   "totalRevenue": "$21,780.22",
   "totalExpenses": "$8,647.88",
-  "netProfit": "$13,132.34"
+  "netProfit": "$13,132.34",
+  "fleet_performance_2025": [
+    {
+      "name": "Julie's BMW (NC #LDV5000)",
+      "revenue": 20747.72,
+      "trips": 40
+    },
+    {
+      "name": "Double Stuff (Tesla Model 3)",
+      "revenue": 13350.34,
+      "trips": 18
+    },
+    {
+      "name": "J&J Modern Luxury's Porsche (NC #LJX5696)",
+      "revenue": 10410.92,
+      "trips": 23
+    },
+    {
+      "name": "J&J Modern Luxury's BMW (NC #LLV4227)",
+      "revenue": 8906.71,
+      "trips": 9
+    },
+    {
+      "name": "Julie's Tesla (NC #LBZ1843)",
+      "revenue": 7338.52,
+      "trips": 19
+    },
+    {
+      "name": "J&J Modern Luxury's Mercedes-Benz (NC #LJV9937)",
+      "revenue": 7245.12,
+      "trips": 15
+    },
+    {
+      "name": "Julie's Porsche Macan S (NC #LCT7781)",
+      "revenue": 223.2,
+      "trips": 1
+    }
+  ]
 }
