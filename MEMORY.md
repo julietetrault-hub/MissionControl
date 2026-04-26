@@ -32,7 +32,7 @@
 - **Underperformers ("Anchors"):**
     - Julie's Tesla (NC #LBZ1843): High maintenance frequency relative to $7,338.52 revenue.
     - Julie's Porsche Macan S (#LCT7781): "Ghost car" (1 trip in 2025).
-- **Current Objective:** Developing cost-benefit analysis for pruning these "Anchors" to improve fleet ROI.
+- **Current Objective:** Finalizing cost-benefit analysis for pruning these "Anchors" to improve fleet ROI. Report draft in progress for Monday review.
 
 ### Security & Resilience (April 2026)
 - **Baseline:** Workspace hardened to Risk Profile 2.
