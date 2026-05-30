@@ -1,20 +1,26 @@
 ☀️ **Good Morning, Joules!**
 
-**Thursday, May 28th, 2026** (EST)
+**Saturday, May 30th, 2026** (EST)
 
 ---
 
 ### 🌤️ Weather (Raleigh, 27614)
-Currently: **72°F · Partly Cloudy** · Humidity 65% · Wind 8 mph
+Currently: **70°F · Cloudy** · Humidity 84% · Wind 7 mph (Feels like 72°F)
 
 ---
 
 ### 📅 Coming Up (Next 7 Days)
 
 - **Mon Jun 1** · Xanax refill *(call-in)*
-- **Thu Jun 3** · Eye Dr appt *(2:15 PM)*
-- **Mon Jun 8** · New Med Mgmt w/ Dr. Khan *(Durham)*
-- **Thu Jun 18** · Dr. Snow *(9:30 AM)* & Logan Smith checkup *(12:50 PM)*
+- **Mon Jun 1** · Maddy
+- **Tue Jun 2** · Appointment: Wells Fargo appt
+- **Wed Jun 3** · Dr Snow
+- **Wed Jun 3** · Mr eye dr *(2:15 PM)*
+- **Thu Jun 4** · Erika Bales
+
+*Lookahead highlights:*
+- **Mon Jun 8** · NEW MED MGMT with ASIF ALAM KHAN, MD *(12:45 PM)*
+- **Thu Jun 18** · Dr. Snow *(9:30 AM)* & Appointment: Checkup with Logan Smith *(12:50 PM)*
 
 ---
 
@@ -28,6 +34,7 @@ Currently: **72°F · Partly Cloudy** · Humidity 65% · Wind 8 mph
 | **Net Profit** | **$13,132.34** |
 
 **Operating Margin:** 15.1%
+**All-Time Net Profit:** $20,378.17
 
 ---
 
@@ -50,4 +57,4 @@ Currently: **72°F · Partly Cloudy** · Humidity 65% · Wind 8 mph
 
 ---
 
-🧜‍♀️ *You've got this. Let me know if you need me to dig deeper on any of these.*
+🧜‍♀️ *Good morning! Systems are tight and aligned. Today I'll keep monitoring the active disposal listings of the Tesla and Macan, and verify our automatic backup health. Let me know if you need me to pull any specific numbers or update the records.*
